@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Event;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Log;
 use Tests\TestCase;
 
 class UpdateEventTest extends TestCase
@@ -76,7 +75,7 @@ class UpdateEventTest extends TestCase
         $repeatUntil = now()->addMonths(30)->format('c');
 
         $updatedStart = now()->addMonths(20)->addMinutes(10)->format('c');
-        
+
         $event = Event::factory()->create([
             'title' => 'Start will be updated',
             'start' => $start,
@@ -102,7 +101,7 @@ class UpdateEventTest extends TestCase
         $repeatUntil = now()->addMonths(30)->format('c');
 
         $updatedEnd = now()->addMonths(20)->addHour()->subMinute()->format('c');
-        
+
         $event = Event::factory()->create([
             'title' => 'Start will be updated',
             'start' => $start,

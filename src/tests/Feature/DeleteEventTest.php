@@ -2,10 +2,9 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
-use Tests\TestCase;
 use App\Models\Event;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class DeleteEventTest extends TestCase
 {
@@ -42,7 +41,7 @@ class DeleteEventTest extends TestCase
             'start' => now()->addYears(2)->format('c'),
             'end' => now()->addYears(2)->addDay()->addHour()->format('c'),
             'frequency' => 'monthly',
-            'repeat_until' => now()->addYears(3)->format('c')
+            'repeat_until' => now()->addYears(3)->format('c'),
         ])->make();
 
         $response = $this->postJson('/api/events/create', $event->toArray())
@@ -50,7 +49,7 @@ class DeleteEventTest extends TestCase
 
         $eventToDelete = Event::whereNotNull('event_id')->first();
 
-        $this->postJson('/api/events/delete/' . $eventToDelete->id)
+        $this->postJson('/api/events/delete/'.$eventToDelete->id)
             ->assertStatus(200);
 
         $this->assertDatabaseMissing('events', ['id' => $eventToDelete->id]);

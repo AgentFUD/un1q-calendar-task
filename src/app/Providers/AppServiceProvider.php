@@ -28,23 +28,22 @@ class AppServiceProvider extends ServiceProvider
 
         Validator::extend('event_overlap', function ($attribute, $value, $parameters, $validator) {
             if ($attribute == 'start' || $attribute == 'end') {
-                if(count($parameters) == 0) {
+                if (count($parameters) == 0) {
                     $overlap_count = DB::table('events')
                         ->where([
                             ['start', '<=', Carbon::parse($value)],
                             ['end', '>=', Carbon::parse($value)],
                         ])
                         ->count();
-                } else  {
+                } else {
                     $overlap_count = DB::table('events')
                         ->where([
                             ['start', '<=', Carbon::parse($value)],
                             ['end', '>=', Carbon::parse($value)],
-                            ['id', '<>', (int)$parameters[0]],
-                    ])
-                    ->count();
+                            ['id', '<>', (int) $parameters[0]],
+                        ])
+                        ->count();
                 }
-                
 
                 return $overlap_count == 0 ?? false;
             }
