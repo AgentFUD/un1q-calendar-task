@@ -27,8 +27,6 @@ class EventController extends Controller
 
     public function list(Request $request)
     {
-        print_r($request->all());
-
         $eventList = Event::where([
             ['start', '<=', Carbon::parse($request->from)],
             ['end', '>=', Carbon::parse($request->to)],
