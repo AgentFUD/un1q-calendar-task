@@ -62,13 +62,13 @@ If you open http://localhost:8000 you should see Laravel default welcome page.
   * Create an API endpoint to list all the events with pagination * This endpoint should be able to filter the result within a specific time range
 
 * Delete an event
-  * Only single events we allow to delete
-  * The first in the recurrence list we do not allow to delete
+  * Only single events we allow to delete ```[DONE]```
+  * The first in the recurrence list we do not allow to delete ```[DONE]```
 
 * General
   * Convert it to Domain Driven Design
-  * Add phpunit tests
-  * Use of code quality/static analysis tools
+  * Add phpunit tests ```[DONE]```
+  * Use of code quality/static analysis tools ```[DONE]```
 
 
 # My development approach
