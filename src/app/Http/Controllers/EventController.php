@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
@@ -26,25 +27,26 @@ class EventController extends Controller
     public function list(Request $request)
     {
         print_r($request->all());
-        
+
         $eventList = Event::where([
             ['start', '<=', Carbon::parse($request->from)],
-            ['end', '>=', Carbon::parse($request->to)]
+            ['end', '>=', Carbon::parse($request->to)],
         ])->paginate(3);
 
         return response()->json($eventList, 200);
     }
 
-    public function update(Request $request, Event $event): Event
+    public function update(UpdateEventRequest $request, Event $event): JsonResponse
     {
-        $event->update($request->all());
+        $event->update($request->only(['title', 'description', 'start', 'end']));
 
-        return $event->refresh();
+        return response()->json($event->refresh(), 201);
     }
 
     public function delete(Event $event): Response
     {
         $event->delete();
+
         return response(null, Response::HTTP_OK);
     }
 }
