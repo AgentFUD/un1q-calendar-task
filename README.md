@@ -52,10 +52,11 @@ If you open http://localhost:8000 you should see Laravel default welcome page.
   * Only a single event can be updated ```[DONE]```
   * title can be updated ```[DONE]```
   * description can be updated ```[DONE]```
-  * frequency can not be changed
-  * For the sake of simplicity repeat_until can not be changed
-  * If the event overlaps with another event, an error should be thrown
-  * start and end can be updated
+  * frequency can not be changed ```[DONE]```
+  * For the sake of simplicity repeat_until can not be changed ```[DONE]```
+  * start and end can be updated ```[DONE]```
+  * If the event overlaps with another event, an error should be thrown ```[DONE]```
+
 
 * List events
   * Create an API endpoint to list all the events with pagination * This endpoint should be able to filter the result within a specific time range
