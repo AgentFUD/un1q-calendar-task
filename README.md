@@ -1,48 +1,61 @@
 # un1q-calendar-task
 
+## Installation
+1. You have to install docker and docker-compose
+2. You have to install git
+3. Clone the repository
+4. run ```make up```
+5. run ```make init```
+
+If you open http://localhost:8000 you should see Laravel default welcome page.
+
+## Running tests
+1. Run installation steps
+2. Run ```make test```
 
 # Development
 
 ## Preparation Steps
-* Dockerize a barebone laravel app
-* Create Makefile for easy use
-* Create migration for events
-* Create factory for events
+* Dockerize a barebone laravel app  ```[DONE]```
+* Create Makefile for easy use  ```[DONE]```
+* Create migration for events  ```[DONE]```
+* Create factory for events  ```[DONE]```
 
 ## First development steps
-* Create Event model
-* Create routes for certain actions
-* Create EventController
-* Create CreateEventRequest, UpdateEventRequest
-* Create custom validation rule: event_overlap
-* Create custom observer for saving recurrent events
+* Create Event model  ```[DONE]```
+* Create routes for certain actions  ```[DONE]```
+* Create EventController  ```[DONE]```
+* Create CreateEventRequest, UpdateEventRequest  ```[DONE]```
+* Create custom validation rule: event_overlap  ```[DONE]```
+* Create custom observer for saving recurrent events  ```[DONE]```
 
 ## List of requirements
 * Adding unit tests
-* Adding/utilizing static analytics tools
-* Create an API endpoint to create an event
-* Create should support recurring events
-* If the event somehow overlaps with another event, an error should be thrown
+* Adding/utilizing static analytics tools  ```[DONE]```
+* Create an API endpoint to create an event  ```[DONE]```
+* Create should support recurring events ```[DONE]```
+* If the event somehow overlaps with another event, an error should be thrown ```[DONE]```
 * New event parameters
-  * title: required|date
-  * description: optional
-  * start: required
-    * should follow ISO 8601 date format
-    * If any event overlaps with the start date it should throw a validation error
-  * end: required|date
-    * should follow ISO 8601 date format
-    * If any event overlaps with the start date it should throw a validation error
-  * frequency: enum = daily, weekly, monthly and yearly are the possible values
-  * repeat_until: required|date
-    * should follow ISO 8601 date format
+  * title: required|string ```[DONE]```
+  * description: optional  ```[DONE]```
+  * start: required  ```[DONE]```
+    * should follow ISO 8601 date format```[DONE]```
+    * If any event overlaps with the start date it should throw a validation error```[DONE]```
+  * end: required|date  ```[DONE]```
+    * should follow ISO 8601 date format ```[DONE]```
+    * If any event overlaps with the start date it should throw a validation error```[DONE]```
+  * frequency: enum = daily, weekly, monthly and yearly are the possible values  ```[DONE]```
+  * repeat_until: date ```[DONE]```
+    * should follow ISO 8601 date format ```[DONE]```
 
 * Updating an event
-  * Only a single event can be updated
-  * title can be updated
-  * description can be updated
+  * Only a single event can be updated ```[DONE]```
+  * title can be updated ```[DONE]```
+  * description can be updated ```[DONE]```
   * frequency can not be changed
-  * If the event overlaps with another event, an error should be thrown ???
-  * Can the start and end be updated?
+  * For the sake of simplicity repeat_until can not be changed
+  * If the event overlaps with another event, an error should be thrown
+  * start and end can be updated
 
 * List events
   * Create an API endpoint to list all the events with pagination * This endpoint should be able to filter the result within a specific time range
@@ -59,19 +72,6 @@
 
 # My development approach
 For every item in the List of requirements section I'll try to write a phpunit test. 
-
-## Installation
-1. You have to install docker and docker-compose
-2. You have to install git
-3. Clone the repository
-4. run ```make up```
-5. run ```make init```
-
-If you open http://localhost:8000 you should see Laravel default welcome page.
-
-## Running tests
-1. Run installation steps
-2. Run ```make test```
 
 ## Static analysis tools
 ### **Pint**
@@ -98,7 +98,6 @@ That goes onto the next category architecture. This covers a few things but is o
 The final stat is code and really just follows a lot of the similar things that you might find with PHPStan or Pint. These might range from useless variables to avoiding using some functions due to the way they can be unpredictable. It can be a little opinionated at times so do remove some rules if they’re just generating more noise for you.
 
 ## Possible improvements
-
 * Introducing .env.testing to set up a separate database for running phpunit tests
 * Doing stress testing on the app to see which operations are expensive and try to optimize code/database.
 * Letting a QA to check the code and find more edge cases

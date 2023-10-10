@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use DateTimeInterface;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateEventRequest extends FormRequest
@@ -11,7 +12,7 @@ class UpdateEventRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +23,10 @@ class UpdateEventRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title'         => 'string|min:3|max:255',
+            'description'   => 'string|max:255',
+            'start'         => 'event_overlap|date|after:now|date_format:'.DateTimeInterface::ATOM,
+            'end'           => 'event_overlap|date|after:start|date_format:'.DateTimeInterface::ATOM,
         ];
     }
 }
