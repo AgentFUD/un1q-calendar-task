@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('events')->group(function () {
+    Route::post('/create', [EventController::class, 'create']);
+    Route::put('/update/{event}', [EventController::class, 'update']);
+    Route::post('/delete/{event}', [EventController::class, 'delete']);
+    Route::get('/show/{event}', [EventController::class, 'show']);
+    Route::get('/list', [EventController::class, 'list']);
 });
