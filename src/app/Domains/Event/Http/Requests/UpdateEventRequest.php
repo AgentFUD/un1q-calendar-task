@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Domains\Event\Http\Requests;
 
 use DateTimeInterface;
 use Illuminate\Foundation\Http\FormRequest;

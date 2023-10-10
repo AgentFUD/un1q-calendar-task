@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Observers;
+namespace App\Domains\Event\Observers;
 
 use App\Models\Event;
 use Illuminate\Support\Carbon;

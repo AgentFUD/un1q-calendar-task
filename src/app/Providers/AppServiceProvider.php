@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
+use App\Domains\Event\Observers\RecurrenceOserver;
 use App\Models\Event;
-use App\Observers\RecurrenceOserver;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;

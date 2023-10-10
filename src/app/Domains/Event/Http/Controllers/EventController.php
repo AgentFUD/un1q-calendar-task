@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Domains\Event\Http\Controllers;
 
-use App\Http\Requests\CreateEventRequest;
-use App\Http\Requests\UpdateEventRequest;
+use App\Domains\Event\Http\Requests\CreateEventRequest;
+use App\Domains\Event\Http\Requests\UpdateEventRequest;
+use App\Http\Controllers\Controller;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
