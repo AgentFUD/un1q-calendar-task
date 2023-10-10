@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: laravel_api
+
+  laravel-app:
+    build:
+      context: ./docker/php-fpm
+    container_name: laravel-app
+    depends_on:
+      - mysql
+    volumes:
+      - ./src/:/var/www/html
+    working_dir: /var/www/html
+
+  nginx:
+    build:
+      context: ./docker/nginx
+    container_name: nginx
+    ports:
+      - "8000:80"
+    depends_on:
+      - laravel-app
+    volumes:
+      - ./src/:/var/www/html
+
+volumes:
+  mysql-volume:
+
+networks:
+  default:
+    name: laravel-calendar-api-network
