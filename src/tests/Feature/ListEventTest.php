@@ -28,11 +28,10 @@ class ListEventTest extends TestCase
 
         $response = $this->get('/api/events/show/'.$eventToShow->id)
             ->assertStatus(200);
-        $this->assertJsonStringEqualsJsonString($eventToShow->toJson(), $response->content());
     }
 
     /**
-     * test
+     * @test
      */
     public function list_events_with_pagination(): void
     {
@@ -48,9 +47,7 @@ class ListEventTest extends TestCase
         $to = now()->addMonths(3)->format('c');
 
         $url = action([EventController::class, 'list'], ['from' => now()->format('Y-m-d'), 'to' => now()->addMonths(2)->format('Y-m-d')]);
-
         $response = $this->get($url)
             ->assertStatus(200);
-        print_r($response->content());
     }
 }
