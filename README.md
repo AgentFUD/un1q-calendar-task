@@ -59,7 +59,8 @@ If you open http://localhost:8000 you should see Laravel default welcome page.
 
 
 * List events
-  * Create an API endpoint to list all the events with pagination * This endpoint should be able to filter the result within a specific time range
+  * Create an API endpoint to list all the events with pagination ```[DONE]```
+  * This endpoint should be able to filter the result within a specific time range ```[DONE]```
 
 * Delete an event
   * Only single events we allow to delete ```[DONE]```
