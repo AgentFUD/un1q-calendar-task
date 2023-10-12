@@ -13,16 +13,16 @@ use Illuminate\Http\Response;
 
 class EventController extends Controller
 {
-    public function create(CreateEventRequest $request): JsonResponse
+    public function create(CreateEventRequest $request): EventResource
     {
         $event = Event::create($request->all());
 
-        return response()->json($event, 201);
+        return EventResource::make($event);
     }
 
     public function show(Event $event)
     {
-        return new EventResource($event);
+        return EventResource::make($event);
     }
 
     public function list(Request $request)
@@ -35,17 +35,17 @@ class EventController extends Controller
         return EventResource::collection($eventList);
     }
 
-    public function update(UpdateEventRequest $request, Event $event): JsonResponse
+    public function update(UpdateEventRequest $request, Event $event): EventResource
     {
         $event->update($request->only(['title', 'description', 'start', 'end']));
 
-        return response()->json($event->refresh(), 201);
+        return EventResource::make($event);
     }
 
     public function delete(Event $event): Response
     {
         $event->delete();
 
-        return response(null, Response::HTTP_OK);
+        return response()->noContent();
     }
 }

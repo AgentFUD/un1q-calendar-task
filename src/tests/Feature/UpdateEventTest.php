@@ -20,7 +20,7 @@ class UpdateEventTest extends TestCase
         $update = ['title' => 'It is updated'];
 
         $response = $this->putJson('/api/events/update/'.$event->id, $update)
-            ->assertStatus(201);
+            ->assertStatus(200);
         $this->assertDatabaseHas('events', $update);
     }
 
@@ -33,7 +33,7 @@ class UpdateEventTest extends TestCase
         $update = ['description' => 'It is an updated description'];
 
         $response = $this->putJson('/api/events/update/'.$event->id, $update)
-            ->assertStatus(201);
+            ->assertStatus(200);
         $this->assertDatabaseHas('events', $update);
     }
 
@@ -46,7 +46,7 @@ class UpdateEventTest extends TestCase
         $update = ['frequency' => 'monthly'];
 
         $response = $this->putJson('/api/events/update/'.$event->id, $update)
-            ->assertStatus(201);
+            ->assertStatus(200);
         $this->assertDatabaseMissing('events', $update);
     }
 
@@ -61,7 +61,7 @@ class UpdateEventTest extends TestCase
         $update = ['repeat_until' => $updatedNow];
 
         $response = $this->putJson('/api/events/update/'.$event->id, $update)
-            ->assertStatus(201);
+            ->assertStatus(200);
         $this->assertDatabaseMissing('events', $update);
     }
 
@@ -87,7 +87,7 @@ class UpdateEventTest extends TestCase
         $update = ['start' => $updatedStart];
 
         $response = $this->putJson('/api/events/update/'.$event->id, $update)
-            ->assertStatus(201);
+            ->assertStatus(200);
         $this->assertDatabaseHas('events', $update);
     }
 
@@ -113,7 +113,7 @@ class UpdateEventTest extends TestCase
         $update = ['end' => $updatedEnd];
 
         $response = $this->putJson('/api/events/update/'.$event->id, $update)
-            ->assertStatus(201);
+            ->assertStatus(200);
         $this->assertDatabaseHas('events', $update);
     }
 }

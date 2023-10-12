@@ -24,9 +24,9 @@ class DeleteEventTest extends TestCase
         $response = $this->postJson('/api/events/create', $event)
             ->assertStatus(201);
 
-        $event_id = $response['id'];
+        $event_id = $response['data']['id'];
         $response = $this->postJson('/api/events/delete/'.$event_id)
-            ->assertStatus(200);
+            ->assertStatus(204);
 
         $this->assertDatabaseMissing('events', $event);
     }
@@ -50,7 +50,7 @@ class DeleteEventTest extends TestCase
         $eventToDelete = Event::whereNotNull('event_id')->first();
 
         $this->postJson('/api/events/delete/'.$eventToDelete->id)
-            ->assertStatus(200);
+            ->assertStatus(204);
 
         $this->assertDatabaseMissing('events', ['id' => $eventToDelete->id]);
     }
