@@ -27,9 +27,9 @@ class EventController extends Controller
     public function list(Request $request)
     {
         $eventList = Event::where([
-            ['start', '<=', Carbon::createFromFormat('Y-m-d', $request->from)],
-            ['end', '>=', Carbon::createFromFormat('Y-m-d', $request->to)],
-        ])->paginate(3);
+            ['start', '>=', Carbon::createFromFormat('Y-m-d', $request->from)],
+            ['end', '<=', Carbon::createFromFormat('Y-m-d', $request->to)],
+        ])->paginate(3)->withQueryString();
 
         return EventResource::collection($eventList);
     }
