@@ -8,23 +8,24 @@ use App\Http\Resources\EventResource;
 use App\Models\Event;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Http\Response;
 
 class EventController extends Controller
 {
     public function create(CreateEventRequest $request): EventResource
     {
-        $event = Event::create($request->all());
+        $event = Event::create($request->validated());
 
         return EventResource::make($event);
     }
 
-    public function show(Event $event)
+    public function show(Event $event): EventResource
     {
         return EventResource::make($event);
     }
 
-    public function list(Request $request)
+    public function list(Request $request): ResourceCollection
     {
         $eventList = Event::where([
             ['start', '>=', Carbon::createFromFormat('Y-m-d', $request->from)],
@@ -38,7 +39,7 @@ class EventController extends Controller
     {
         $event->update($request->only(['title', 'description', 'start', 'end']));
 
-        return EventResource::make($event);
+        return EventResource::make($event->fresh());
     }
 
     public function delete(Event $event): Response
